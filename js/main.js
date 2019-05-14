@@ -1,30 +1,38 @@
 'use strict';
 
 
-// let date = new Date();
-// console.log("TCL: date", date)
+function createNewUser(){
+    let newUser = {
+        getLogin: function() {
+            return console.log(this.firstName[0].toLowerCase() + this.secondName.toLowerCase()) ;
+        },
+        getAge: function () {
+            let now = new Date();
+            let currentYear = now.getFullYear();
 
-// function createNewUser() {
-//   let user = {
-//     firstName: prompt("Enter firstName:"),
-//     secondName: prompt("Enter secondtName:"),
-//     birthday: prompt("Enter your birthday(dd.mm.yyyy):"),
+            let inputDate = +this.birthday.substring(0, 2);
+            let inputMonth = +this.birthday.substring(3, 5);
+            let inputYear = +this.birthday.substring(6, 10);
 
-//     getAge: function (age) {
-//       return date.getFullYear();
-//     },
-//     getPassword: function () {
+            let birthDate = new Date(inputYear, inputMonth-1, inputDate);
+            let birthYear = birthDate.getFullYear();
+            let age = currentYear - birthYear;
+            if (now < new Date(birthDate.setFullYear(currentYear))) {
+                age = age - 1;
+            }
+            return console.log(age);
+        },
+        getPassword: function () {
 
-//     }
-//   }
-// }
-// createNewUser();
-// createNewUser.getAge();
+            return console.log(this.firstName[0].toUpperCase() + this.secondName.toLowerCase() + this.birthday.substring(6,10));
+        }
+    };
+    newUser.firstName = prompt("Write your first name");
+    newUser.secondName = prompt("Write your second name");
+    newUser.birthday = prompt("Write your birthday dd.mm.yy: ");
+    newUser.getAge();
+    newUser.getPassword();
 
-let date = new Date();
-let birthday = new Date();
-
-
-birthday.setFullYear(1997, 2, 21);
-console.log("TCL: birthday", birthday)
-console.log(date.getFullYear() - birthday);
+    return newUser;
+}
+createNewUser();
